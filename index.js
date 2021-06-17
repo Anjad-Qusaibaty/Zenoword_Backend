@@ -1,20 +1,15 @@
-// const Tag = require("./models").tag;
-// const User = require("./models").user;
-// const Extract = require("./models").extract;
 const express = require("express");
-const Something = require("./models").something;
+const Cors = require("cors");
+const { PORT } = require("./config/constants");
 const app = express();
-const Port = process.env.PORT || 4000;
+app.listen(PORT, console.log(`Listening on port ${PORT}`));
+const authRouter = require("./routers/auth");
 
+//   express.json(): is a body-parser to read the request.body of JSON requests
+//   docs: https://expressjs.com/en/api.html#express.json
 app.use(express.json());
 
-app.listen(Port, console.log(`Listening on port ${Port}`));
+app.use(Cors());
 
-// app.get("/extracts", async (request, response, next) => {
-//   try {
-//     const aConst = await Extract.findAll({ include: [Tag] });
-//     response.send(aConst);
-//   } catch (error) {
-//     console.log("There is an error:", error.message);
-//   }
-// });
+// app level router for login and signing up
+app.use("/", authRouter);

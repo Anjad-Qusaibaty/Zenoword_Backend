@@ -30,7 +30,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       mediaType: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM("Book", "Online Article"),
         allowNull: false,
       },
       imageUrl: {

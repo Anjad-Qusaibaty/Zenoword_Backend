@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       subtitle: DataTypes.STRING,
       page: DataTypes.STRING,
       link: DataTypes.STRING,
-      mediaType: DataTypes.STRING,
+      mediaType: DataTypes.ENUM("Book", "Online Article"),
       imageUrl: DataTypes.STRING,
       userId: DataTypes.INTEGER,
     },
