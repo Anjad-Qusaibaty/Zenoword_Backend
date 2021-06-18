@@ -3,6 +3,7 @@ const { Router } = require("express");
 const { toJWT } = require("../auth/jwt");
 const User = require("../models/").user;
 const nodemailer = require("nodemailer");
+const authMiddleware = require("../auth/middleware");
 require("dotenv").config();
 const { SALT_ROUNDS } = require("../config/constants");
 const { toData } = require("../auth/jwt");
@@ -96,9 +97,7 @@ router.get("/confirmation/:token", async (request, response) => {
   try {
     const { userId } = toData(request.params.token);
     await User.update({ confirmed: true }, { where: { id: parseInt(userId) } });
-    return response
-      .status(200)
-      .send({ message: "The email has been verified" });
+    return response.status(200).send("The email has been verified");
   } catch (e) {
     return response
       .status(400)
@@ -106,7 +105,7 @@ router.get("/confirmation/:token", async (request, response) => {
   }
 });
 
-router.post("/pwreset", async (request, response) => {
+router.post("/emailconf", async (request, response) => {
   try {
     const { email } = request.body;
 
@@ -170,5 +169,12 @@ router.post("/patchpw", async (request, response) => {
       .send({ message: "Something went wrong, sorry" });
   }
 });
+router.get("/me", authMiddleware, async (req, res) => {
+  // don't send back the password hash
+  delete req.user.dataValues["password"];
+  res.status(200).send({ ...req.user.dataValues });
+});
+
+module.exports = router;
 
 module.exports = router;
