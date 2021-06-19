@@ -9,7 +9,7 @@ module.exports = {
       [
         {
           name: "test user",
-          email: "tu@t",
+          email: "tu@t.com",
           password: bcrypt.hashSync("123", SALT_ROUNDS),
           confirmed: true,
           createdAt: new Date(),
@@ -17,7 +17,7 @@ module.exports = {
         },
         {
           name: "dummy user",
-          email: "du@t",
+          email: "du@t.net",
           password: bcrypt.hashSync("321", SALT_ROUNDS),
           confirmed: true,
           createdAt: new Date(),
@@ -25,7 +25,7 @@ module.exports = {
         },
         {
           name: "test conf",
-          email: "conf@conf",
+          email: "conf@conf.com",
           password: bcrypt.hashSync("321", SALT_ROUNDS),
           confirmed: false,
           createdAt: new Date(),
