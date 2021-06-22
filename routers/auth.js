@@ -183,7 +183,7 @@ router.post("/patchpw", async (request, response) => {
 // - get the users email & name using only their token
 // - checking if a token is (still) valid
 router.get("/me", authMiddleware, async (req, res) => {
-  const extract = await Extract.findAll({
+  const extracts = await Extract.findAll({
     where: { userId: req.user.id },
     include: [{ model: Tag }],
   });
@@ -191,7 +191,7 @@ router.get("/me", authMiddleware, async (req, res) => {
   delete req.user.dataValues["password"];
   res.status(200).send({
     ...req.user.dataValues,
-    extract,
+    extracts,
   });
 });
 
