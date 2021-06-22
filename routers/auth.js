@@ -2,6 +2,8 @@ const bcrypt = require("bcrypt");
 const { Router } = require("express");
 const { toJWT } = require("../auth/jwt");
 const User = require("../models/").user;
+const Extract = require("../models/").extract;
+const Tag = require("../models/").tag;
 const nodemailer = require("nodemailer");
 const authMiddleware = require("../auth/middleware");
 require("dotenv").config();
@@ -21,7 +23,15 @@ router.post("/login", async (request, response, next) => {
         .send({ message: "Please provide both email and password" });
     }
     // Find the user in the database that has a matching email
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({
+      where: { email },
+      include: [
+        {
+          model: Extract,
+          include: [{ model: Tag }],
+        },
+      ],
+    });
     // If a user with a matching email is not found, or if the password provided doesn't match the password in the database, return a message.
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return response.status(400).send({
@@ -173,9 +183,16 @@ router.post("/patchpw", async (request, response) => {
 // - get the users email & name using only their token
 // - checking if a token is (still) valid
 router.get("/me", authMiddleware, async (req, res) => {
+  const extract = await Extract.findAll({
+    where: { userId: req.user.id },
+    include: [{ model: Tag }],
+  });
   // don't send back the password hash
   delete req.user.dataValues["password"];
-  res.status(200).send({ ...req.user.dataValues });
+  res.status(200).send({
+    ...req.user.dataValues,
+    extract,
+  });
 });
 
 module.exports = router;

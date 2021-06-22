@@ -10,18 +10,21 @@ const Extract = require("./models").extract;
 // getExtracts().then((data) => console.log(data));
 
 // async function getUsersWithTags() {
-//   const userwithTags = await User.findAll({ include: [Tag] });
-//   return userwithTags.map((data) => data.get({ plain: true }));
+//   const userwithTags = await User.findOne({
+//     where: { email: "tu@t.com" },
+//     include: [{ model: extract }],
+//   });
+//   return userwithTags.get({ plain: true });
 // }
 
-// getUsersWithTags().then((data) => console.log(data));
+// getUsersWithTags();
 
-async function getExtractswithTags() {
-  const extractwithTags = await Extract.findAll({ include: [Tag] });
-  return extractwithTags.map((data) => data.get({ plain: true }));
-}
+// async function getExtractswithTags() {
+//   const extractwithTags = await Extract.findAll({ include: [Tag] });
+//   return extractwithTags.map((data) => data.get({ plain: true }));
+// }
 
-getExtractswithTags().then((data) => console.log(data));
+// getExtractswithTags().then((data) => console.log(data));
 
 // async function getTagswithExtract() {
 //   const tagswithExtract = await Tag.findAll({ include: [Extract] });
