@@ -61,6 +61,7 @@ module.exports = {
           text: "What was really needed was a fundamental change in our attitude toward life. We had to learn ourselves and, furthermore, we had to teach the despairing men, that it did not really matter what we expected from life, but rather what life expected from us.",
           author: "Viktor E. Frankl",
           title: "Man's Search For Meaning",
+          subtitle: "n/a",
           page: "85",
           mediaType: "Book",
           imageUrl:
@@ -73,6 +74,7 @@ module.exports = {
           text: "This is how it is with insomnia. Everything is so far away, a copy of a copy of a copy. The insomnia distance of everything, you can't touch anything and nothing can touch you.",
           author: "Chuck Palahniuk",
           title: "Fight Club",
+          subtitle: "n/a",
           page: "21",
           mediaType: "Book",
           imageUrl:
@@ -86,6 +88,7 @@ module.exports = {
           author: "Flavio Copes",
           title:
             "How to sort an array of objects by a property value in JavaScript",
+          subtitle: "n/a",
           mediaType: "Online Article",
           link: "https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/",
           imageUrl:
@@ -98,6 +101,7 @@ module.exports = {
           text: "Food is the single biggest controllable factor that determines how much we enjoy our lives. What we eat is a persistent, nuanced balance between short term enjoyment and long term reward.",
           author: "Philip Marais",
           title: "Low-carb thinking for regular people",
+          subtitle: "n/a",
           mediaType: "Online Article",
           link: "https://medium.com/@finmn/low-carb-thinking-for-regular-people-c82354266beb",
           imageUrl:

@@ -22,6 +22,7 @@ module.exports = {
       },
       subtitle: {
         type: Sequelize.STRING,
+        defaultValue: "n/a",
       },
       page: {
         type: Sequelize.STRING,

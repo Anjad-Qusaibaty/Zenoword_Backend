@@ -17,10 +17,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   extract.init(
     {
-      text: DataTypes.STRING,
-      author: DataTypes.STRING,
-      title: DataTypes.STRING,
-      subtitle: DataTypes.STRING,
+      text: { type: DataTypes.STRING, allowNull: false },
+      author: { type: DataTypes.STRING, allowNull: false },
+      title: { type: DataTypes.STRING, allowNull: false },
+      subtitle: {
+        type: DataTypes.STRING,
+        defaultValue: "n/a",
+      },
       page: DataTypes.STRING,
       link: DataTypes.STRING,
       mediaType: DataTypes.ENUM("Book", "Online Article"),
