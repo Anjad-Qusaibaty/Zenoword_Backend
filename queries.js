@@ -9,6 +9,22 @@ const Extract = require("./models").extract;
 
 // getExtracts().then((data) => console.log(data));
 
+// async function getExtracts() {
+//   const extract = await Extract.findAll();
+//   return console.log(extract.get({ plain: true }));
+// }
+
+// getExtracts();
+
+async function getExtracts() {
+  const extracts = await Extract.findAll({
+    where: { userId: 1 },
+    include: [{ model: Tag }],
+  });
+  console.log([...extracts.dataValues]);
+}
+getExtracts();
+
 // async function getUsersWithTags() {
 //   const userwithTags = await User.findOne({
 //     where: { email: "tu@t.com" },
