@@ -23,27 +23,50 @@ router.post("/delete/:id", async (request, response, next) => {
         .send(`There is no extract with id ${request.params.id}`);
     } else {
       await Extracttodelete.destroy();
-
-      //   const user = await User.findOne({
-      //     where: { email },
-      //     include: [
-      //       {
-      //         model: Extract,
-      //         include: [{ model: Tag }],
-      //       },
-      //     ],
-      //   });
-      //   delete user.dataValues["password"];
-      //   const token = toJWT({ userId: user.id });
-
       const extracts = await Extract.findAll({
         where: { userId },
         include: [{ model: Tag }],
       });
-      console.log(extracts);
 
       return response.status(200).send(extracts);
     }
+  } catch (error) {
+    console.log("There is an error:", error.message);
+  }
+});
+
+router.patch("/edit/:id", async (request, response, next) => {
+  try {
+    const {
+      text,
+      author,
+      title,
+      subtitle,
+      page,
+      link,
+      mediaType,
+      imageUrl,
+      tags,
+      userId,
+    } = request.body;
+
+    const received = {
+      text: text,
+      author: author,
+      title: title,
+      subtitle: subtitle,
+      page: page,
+      link: link,
+      mediaType: mediaType,
+      imageUrl: imageUrl,
+      tags: tags,
+      userId: userId,
+    };
+    console.log("from Backend!", received);
+
+    return response
+      .status(200)
+      .send({ message: "Ok mate! Well received! :D", received: received });
   } catch (error) {
     console.log("There is an error:", error.message);
   }

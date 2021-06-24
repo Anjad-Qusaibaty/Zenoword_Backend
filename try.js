@@ -64,11 +64,17 @@ const filtering = extracts.filter(
 
 // // console.log(filtering);
 // // console.log(extractszonder);
-console.log(filtering);
+// console.log(filtering);
 
-const tags = [{ type: "z" }, { type: "rakan" }];
+// const tags = [{ type: "z" }, { type: "rakan" }];
 
-const y = tags.map((t) => t.type);
-// const stringie = JSON.stringify(tags);
+// const y = tags.map((t) => t.type);
+// // const stringie = JSON.stringify(tags);
 
-console.log(y);
+// console.log(y);
+
+const tags = "tag1,tag2,tag3,tag4";
+const spliting = tags.split(",");
+
+const x = tags.split(",").map((t) => console.log(t));
+console.log(x);
