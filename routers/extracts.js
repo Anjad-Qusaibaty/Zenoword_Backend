@@ -163,22 +163,20 @@ router.patch("/create", async (request, response, next) => {
 
 router.post("/vision", async (request, response, next) => {
   try {
-    const { imgFile } = request.body;
-    console.log(imgFile);
+    const { image } = request.body;
+    console.log(image);
     const vision = require("@google-cloud/vision");
 
     // Creates a client
     const client = new vision.ImageAnnotatorClient({
-      keyFilename: "apikey.json",
+      keyFilename: "newkapi.json",
     });
 
-    const fileName = "test.jpg";
-    const testUrl =
-      "https://i.pinimg.com/originals/de/5f/31/de5f31228ccbdff616e80b08a3fc620c.jpg";
+    // const fileName = "test.jpg";
+    // const testUrl =
+    //   "https://i.pinimg.com/originals/de/5f/31/de5f31228ccbdff616e80b08a3fc620c.jpg";
     // Performs text detection on the local file
-    const [result] = await client.textDetection(
-      "http://res.cloudinary.com/delvoxvyc/image/upload/v1624588565/test_upload/xbldptkmxthhjogcwtjc.png"
-    );
+    const [result] = await client.textDetection(image);
     const detections = result.textAnnotations;
 
     return response.status(200).send(detections[0].description);

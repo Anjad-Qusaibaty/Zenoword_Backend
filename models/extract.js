@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   extract.init(
     {
-      text: { type: DataTypes.STRING, allowNull: false },
+      text: { type: DataTypes.STRING(1000), allowNull: false },
       author: { type: DataTypes.STRING, allowNull: false },
       title: { type: DataTypes.STRING, allowNull: false },
       subtitle: {
