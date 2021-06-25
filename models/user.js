@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       user.hasMany(models.extract);
-      user.hasMany(models.tag);
     }
   }
   user.init(

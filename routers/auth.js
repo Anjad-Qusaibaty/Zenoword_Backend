@@ -3,7 +3,6 @@ const { Router } = require("express");
 const { toJWT } = require("../auth/jwt");
 const User = require("../models/").user;
 const Extract = require("../models/").extract;
-const Tag = require("../models/").tag;
 const nodemailer = require("nodemailer");
 const authMiddleware = require("../auth/middleware");
 require("dotenv").config();
@@ -28,7 +27,6 @@ router.post("/login", async (request, response, next) => {
       include: [
         {
           model: Extract,
-          include: [{ model: Tag }],
         },
       ],
     });
@@ -185,7 +183,6 @@ router.post("/patchpw", async (request, response) => {
 router.get("/me", authMiddleware, async (req, res) => {
   const extracts = await Extract.findAll({
     where: { userId: req.user.id },
-    include: [{ model: Tag }],
   });
   // don't send back the password hash
   delete req.user.dataValues["password"];

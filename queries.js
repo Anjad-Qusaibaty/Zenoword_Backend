@@ -1,13 +1,12 @@
-const Tag = require("./models").tag;
 const User = require("./models").user;
 const Extract = require("./models").extract;
 
-// async function getExtracts() {
-//   const extract = await Extract.findAll();
-//   return extract.map((data) => data.get({ plain: true }));
-// }
+async function getExtracts() {
+  const extract = await Extract.findAll({ where: { userId: 1 } });
+  return extract.map((data) => data.get({ plain: true }));
+}
 
-// getExtracts().then((data) => console.log(data));
+getExtracts().then((data) => console.log(data));
 
 // async function getExtracts() {
 //   const extract = await Extract.findAll();
@@ -16,14 +15,11 @@ const Extract = require("./models").extract;
 
 // getExtracts();
 
-async function getExtracts() {
-  const extracts = await Extract.findAll({
-    where: { userId: 1 },
-    include: [{ model: Tag }],
-  });
-  console.log([...extracts.dataValues]);
-}
-getExtracts();
+// async function getExtracts() {
+//   const extracts = await Extract.findAll();
+//   console.log([...extracts.dataValues]);
+// }
+// getExtracts();
 
 // async function getUsersWithTags() {
 //   const userwithTags = await User.findOne({

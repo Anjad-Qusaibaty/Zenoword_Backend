@@ -9,10 +9,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       extract.belongsTo(models.user);
-      extract.belongsToMany(models.tag, {
-        through: "extags",
-        foreignKey: "extractId",
-      });
     }
   }
   extract.init(
@@ -22,12 +18,16 @@ module.exports = (sequelize, DataTypes) => {
       title: { type: DataTypes.STRING, allowNull: false },
       subtitle: {
         type: DataTypes.STRING,
-        defaultValue: "n/a",
+        defaultValue: "",
       },
-      page: DataTypes.STRING,
-      link: DataTypes.STRING,
+      tags: {
+        type: DataTypes.STRING,
+        defaultValue: "",
+      },
+      page: { type: DataTypes.STRING, defaultValue: "" },
+      link: { type: DataTypes.STRING, defaultValue: "" },
       mediaType: DataTypes.ENUM("Book", "Online Article"),
-      imageUrl: DataTypes.STRING,
+      imageUrl: { type: DataTypes.STRING, defaultValue: "" },
       userId: DataTypes.INTEGER,
     },
     {

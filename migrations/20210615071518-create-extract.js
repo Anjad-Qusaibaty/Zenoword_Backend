@@ -22,13 +22,15 @@ module.exports = {
       },
       subtitle: {
         type: Sequelize.STRING,
-        defaultValue: "n/a",
+        defaultValue: "",
       },
       page: {
         type: Sequelize.STRING,
+        defaultValue: "",
       },
       link: {
         type: Sequelize.STRING,
+        defaultValue: "",
       },
       mediaType: {
         type: Sequelize.ENUM("Book", "Online Article"),
@@ -36,6 +38,11 @@ module.exports = {
       },
       imageUrl: {
         type: Sequelize.STRING,
+        defaultValue: "",
+      },
+      tags: {
+        type: Sequelize.STRING,
+        defaultValue: "",
       },
       userId: {
         type: Sequelize.INTEGER,

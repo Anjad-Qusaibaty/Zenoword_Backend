@@ -73,8 +73,34 @@ const filtering = extracts.filter(
 
 // console.log(y);
 
-const tags = "tag1,tag2,tag3,tag4";
-const spliting = tags.split(",");
+const tags = "tag1,";
+const spliting = tags.split(/[\,;]+/);
+function check(str) {
+  if (str.slice(-1) === "," || str.slice(-1) === ";" || str.slice(-1) === ".") {
+    return str.substring(0, str.length - 1);
+  } else {
+    return str;
+  }
+}
+const working = check(tags);
+// const x = tags.split(",").map((t) => console.log(t));
+// console.log(x);
+console.log(working);
 
-const x = tags.split(",").map((t) => console.log(t));
-console.log(x);
+// imageUrl:
+// "http://books.google.com/books/content?id=W3q8R4dRZTwC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+
+
+
+const text={
+  text: "What was really needed was a fundamental change in our attitude toward life. We had to learn ourselves and, furthermore, we had to teach the despairing men, that it did not really matter what we expected from life, but rather what life expected from us.",
+  author: "Viktor E. Frankl",
+  title: "Man's Search For Meaning",
+  subtitle: "",
+  page: "85",
+  mediaType: "Book",
+  imageUrl: "",
+  link: "",
+  tags: "Attitude,Life",
+  userId: 1,
+},
