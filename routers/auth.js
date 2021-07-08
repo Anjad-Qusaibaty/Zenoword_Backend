@@ -78,14 +78,14 @@ router.post("/signup", async (request, response) => {
     });
 
     const token = toJWT({ userId: newUser.id });
-    const Url = `http://localhost:4000/confirmation/${token}`;
+    const Url = `http://localhost:3000/confirmed/${token}`;
     // send mail with defined transport object
     const info = await transporter.sendMail({
       from: '"ZenoWord" <zenoword@hotmail.com>', // sender address
       to: email, // list of receivers
       subject: "Email Verification For Zenoword", // Subject line
       //   text: "Hello world?", // plain text body
-      html: `<p>We received your request successfully, one last step before you can use ZenoWord</p><a href= ${Url}>Click this link here!</a>`, // html body
+      html: `<p>We received your request successfully. To confirm your email please click on the link below.</p><a href= ${Url}>Click this link here!</a>`, // html body
     });
     console.log("Message sent: %s", info.messageId);
 
